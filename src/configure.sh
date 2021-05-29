@@ -56,4 +56,4 @@ else
         su -c "php /app/bin/clean" $CONTAINER_UID
 fi
 
-chown -R $CONTAINER_UID /app
+chown -R ${CONTAINER_UID:-0} /app
