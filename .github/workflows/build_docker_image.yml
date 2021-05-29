@@ -49,7 +49,7 @@ jobs:
             nowaidavid/xbackbone-php:7.4-alpine-arm64
             nowaidavid/xbackbone-php:7.4-alpine-arm64-${{ github.sha }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6,linux/arm64
-        context: ./upstream_images/php-official_7.4-alpine-arm64
+          context: ./upstream_images/php-official_7.4-alpine-arm64
           
       - name: Build and push PHP-NGINX
         id: docker_build
