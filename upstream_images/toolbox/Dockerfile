@@ -20,4 +20,5 @@ RUN apk add --no-cache \
     ## Install go-replace
     && wget -O "/usr/local/bin/go-replace" "https://github.com/webdevops/go-replace/releases/download/1.1.2/gr-arm64-linux" \
     && chmod +x "/usr/local/bin/go-replace"
-RUN "/usr/local/bin/go-replace" --version
+RUN uname -m && \
+    "/usr/local/bin/go-replace" --version
