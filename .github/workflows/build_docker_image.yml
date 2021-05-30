@@ -37,7 +37,7 @@ jobs:
           tags: |
             nowaidavid/xbackbone-toolbox:${{ github.sha }}
             nowaidavid/xbackbone-toolbox:latest
-          platforms: linux/arm/v7
+          platforms: linux/arm64
           context: ./upstream_images/toolbox
 
       - name: Build and push PHP 7.4 Alpine
