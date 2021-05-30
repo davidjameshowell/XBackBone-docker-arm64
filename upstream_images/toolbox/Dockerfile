@@ -1,7 +1,5 @@
 FROM alpine:latest@sha256:8f18fae117ec6e5777cc62ba78cbb3be10a8a38639ccfb949521abd95c8301a4
 
-RUN uname -r 
-
 RUN apk add --no-cache \
         ca-certificates \
         openssl \
@@ -20,6 +18,6 @@ RUN apk add --no-cache \
         git \
         gnupg \
     ## Install go-replace
-    && wget -O "/usr/local/bin/go-replace" "https://github.com/webdevops/goreplace/releases/download/1.1.2/gr-arm64-linux" \
+    && wget -O "/usr/local/bin/go-replace" "https://github.com/webdevops/go-replace/releases/download/1.1.2/gr-arm64-linux" \
     && chmod +x "/usr/local/bin/go-replace" \
     && "/usr/local/bin/go-replace" --version
