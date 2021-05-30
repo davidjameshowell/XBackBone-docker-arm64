@@ -37,7 +37,7 @@ jobs:
           tags: |
             nowaidavid/xbackbone-toolbox:${{ github.sha }}
             nowaidavid/xbackbone-toolbox:latest
-          platforms: linux/arm64/v8
+          platforms: linux/arm64
           context: ./upstream_images/toolbox
 
       - name: Build and push PHP 7.4 Alpine
@@ -48,7 +48,7 @@ jobs:
           tags: |
             nowaidavid/xbackbone-php:7.4-alpine-arm64
             nowaidavid/xbackbone-php:7.4-alpine-arm64-${{ github.sha }}
-          platforms: linux/arm64/v8
+          platforms: linux/arm64
           context: ./upstream_images/php-official_7.4-alpine-arm64
           
       - name: Build and push PHP-NGINX
@@ -60,7 +60,7 @@ jobs:
           tags: |
             nowaidavid/php-nginx:alpine-php7-arm64-${{ github.sha }}
             nowaidavid/php-nginx:alpine-php7-arm64
-          platforms: linux/arm64/v8
+          platforms: linux/arm64
           context: ./upstream_images/php-nginx_alpine-php7-arm64
           
       - name: Build and push PHP-NGINX
@@ -72,7 +72,7 @@ jobs:
           tags: |
             nowaidavid/xbackbone-docker-arm64-${{ github.sha }}
             nowaidavid/xbackbone-docker-arm64:latest
-          platforms: linux/arm64/v8
+          platforms: linux/arm64
           context: ./src
 
       - name: Image digest
