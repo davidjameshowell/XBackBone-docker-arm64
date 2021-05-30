@@ -15,9 +15,9 @@ RUN wget "https://github.com/SergiX44/XBackBone/releases/download/${XBACKBONE_VE
         cd /app; \
         unzip master.zip; \
         rm master.zip; \
-	    mkdir -p /app/config \
+	    mkdir -p /app/config; \
         wget "https://github.com/cloudflare/cloudflared/releases/download/2021.5.10/cloudflared-linux-arm64" -O /opt/docker/cloudflared; \
-        chmod +x /opt/docker/cloudflared
+        chmod +x /opt/docker/cloudflared;
 
 VOLUME [ "/app/storage", "/app/resources/database", "/app/logs", "/app/config"]
 
