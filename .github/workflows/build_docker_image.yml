@@ -33,7 +33,7 @@ jobs:
         id: docker_build_toolbox
         uses: docker/build-push-action@v2
         with:
-          push: true
+          push: false
           tags: |
             nowaidavid/xbackbone-toolbox:${{ github.sha }}
             nowaidavid/xbackbone-toolbox:latest
