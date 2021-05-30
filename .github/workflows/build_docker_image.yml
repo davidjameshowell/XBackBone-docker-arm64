@@ -29,6 +29,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: BuildTesting
+        run: |
+          docker build -f ./upstream_images/toolbox .
+
       - name: Build and push Toolbox
         id: docker_build_toolbox
         uses: docker/build-push-action@v2
