@@ -15,9 +15,7 @@ RUN wget "https://github.com/SergiX44/XBackBone/releases/download/${XBACKBONE_VE
         cd /app; \
         unzip master.zip; \
         rm master.zip; \
-	    mkdir -p /app/config; \
-        wget "https://github.com/cloudflare/cloudflared/releases/download/2021.5.10/cloudflared-linux-arm64" -O /opt/docker/cloudflared; \
-        chmod +x /opt/docker/cloudflared;
+        mkdir -p /app/config;
 
 VOLUME [ "/app/storage", "/app/resources/database", "/app/logs", "/app/config"]
 
@@ -25,4 +23,6 @@ VOLUME [ "/app/storage", "/app/resources/database", "/app/logs", "/app/config"]
 USER root
 
 # Necessary for Cloudflare to operate - see https://github.com/cloudflare/cloudflared/issues/205
-RUN apk --no-cache add libc6-compat
+RUN apk --no-cache add libc6-compat; \
+    wget "https://github.com/cloudflare/cloudflared/releases/download/2021.5.10/cloudflared-linux-arm64" -O /opt/docker/cloudflared; \
+    chmod +x /opt/docker/cloudflared;
