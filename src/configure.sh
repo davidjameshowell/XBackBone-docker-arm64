@@ -47,13 +47,13 @@ if [ "${LDAP_ENABLED:-false}" == "true" ]; then
 fi
 
 if [ ! -f /app/storage/.installed ]; then
-	su -c "php /app/bin/migrate --install" $CONTAINER_UID
-	su -c "php /app/bin/migrate" $CONTAINER_UID
-	su -c "php /app/bin/clean" $CONTAINER_UID
+	su -c "/usr/local/bin/php /app/bin/migrate --install" $CONTAINER_UID
+	su -c "/usr/local/bin/php /app/bin/migrate" $CONTAINER_UID
+	su -c "/usr/local/bin/php /app/bin/clean" $CONTAINER_UID
 	echo '-' > /app/storage/.installed
 else
-	su -c "php /app/bin/migrate" $CONTAINER_UID
-        su -c "php /app/bin/clean" $CONTAINER_UID
+	su -c "/usr/local/bin/php /app/bin/migrate" $CONTAINER_UID
+        su -c "/usr/local/bin/php /app/bin/clean" $CONTAINER_UID
 fi
 
 chown -R ${CONTAINER_UID:-0} /app
