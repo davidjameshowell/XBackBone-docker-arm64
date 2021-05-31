@@ -17,8 +17,6 @@ jobs:
           version: "1.8.5"
       - name: Check Tailscale connectivity
         run: tailscale ip
-      - name: Check ping of host
-        run: ping -c 5 ${{ secrets.XBACKBONE_HOST }}
       - name: Execute build script via SSH
         uses: appleboy/ssh-action@master
         env:
