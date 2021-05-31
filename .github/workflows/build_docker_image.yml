@@ -14,6 +14,7 @@ jobs:
       - uses: tailscale/github-action@main
         with:
           authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+          version: "1.8.5"
       - name: Check ping of host
         run: tailscale ip
       - name: Execute build script via SSH
