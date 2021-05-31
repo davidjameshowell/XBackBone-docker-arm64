@@ -8,7 +8,7 @@ on:
 
 jobs:
   build_multi_arch_image:
-    name: Build multi-arch Docker image.
+    name: Build Docker images via ARM instance.
     runs-on: ubuntu-latest
     steps:
       - uses: tailscale/github-action@main
@@ -25,7 +25,9 @@ jobs:
           port: 22
           script: |
             cd /tmp
+            rm -rf /tmp/XBackBone-docker-arm64
             git clone https://github.com/davidjameshowell/XBackBone-docker-arm64
             cd XBackBone-docker-arm64
             git checkout ${GITHUB_REF}
             bash build.sh
+            rm -rf /tmp/XBackBone-docker-arm64
