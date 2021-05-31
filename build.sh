@@ -25,7 +25,7 @@ cd "${SCRIPT_DIR}"/src || exit
 docker build -t nowaidavid/xbackbone-docker-arm64:latest -t nowaidavid/xbackbone-docker-arm64:"${GIT_SHA_VAR:-nosha}" .
 
 # Push Images
-docker image push --all-tags nowaidavid/xbackbone-toolbox:latest
+docker image push --all-tags nowaidavid/xbackbone-toolbox
 docker image push --all-tags nowaidavid/xbackbone-php:7.4-alpine-arm64
 docker image push --all-tags nowaidavid/php-nginx:alpine-php7-arm64
 docker image push --all-tags nowaidavid/xbackbone-docker-arm64
