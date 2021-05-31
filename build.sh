@@ -23,9 +23,17 @@ cd "${SCRIPT_DIR}"/src || exit
 docker build -t nowaidavid/xbackbone-docker-arm64:latest -t nowaidavid/xbackbone-docker-arm64:"${GIT_SHA_VAR:-nosha}" .
 
 # Push Images
-docker image push nowaidavid/xbackbone-toolbox
-docker image push nowaidavid/xbackbone-php
-docker image push nowaidavid/php-nginx
-docker image push nowaidavid/xbackbone-docker-arm64
+docker image push nowaidavid/xbackbone-toolbox:latest
+docker iamge push nowaidavid/xbackbone-toolbox:"${GIT_SHA_VAR:-nosha}"
+
+docker image push nowaidavid/xbackbone-php:latest
+docker image push nowaidavid/xbackbone-php:"${GIT_SHA_VAR:-nosha}"
+
+docker image push nowaidavid/php-nginx:latest
+docker image push nowaidavid/php-nginx:"${GIT_SHA_VAR:-nosha}"
+
+docker image push nowaidavid/xbackbone-docker-arm64:latest
+docker image push nowaidavid/xbackbone-docker-arm64:"${GIT_SHA_VAR:-nosha}"
+
 
 printf "All images pushed to Dockerhub and now avaliable for consumption"
