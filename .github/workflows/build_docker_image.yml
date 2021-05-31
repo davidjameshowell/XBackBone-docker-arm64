@@ -23,6 +23,7 @@ jobs:
           port: ${{ secrets.XBACKBONE_SSH_PORT }}
           envs: GIT_SHA,GITHUB_REF
           script_stop: true
+          command_timeout: 180m
           script: |
             echo "GIT_SHA - ${GIT_SHA}
             echo "GITHUB_REF - ${GITHUB_REF#refs/heads/}
