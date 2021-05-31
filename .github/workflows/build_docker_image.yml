@@ -25,7 +25,7 @@ jobs:
           host: ${{ secrets.XBACKBONE_HOST }}
           username: ${{ secrets.XBACKBONE_USERNAME }}
           key: ${{ secrets.XBACKBONE_SSH_KEY }}
-          port: 22
+          port: "22"
           script_stop: true
           script: |
             cd /tmp
