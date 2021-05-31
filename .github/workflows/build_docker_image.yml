@@ -21,6 +21,7 @@ jobs:
           username: ${{ secrets.XBACKBONE_USERNAME }}
           key: ${{ secrets.XBACKBONE_SSH_KEY }}
           port: ${{ secrets.XBACKBONE_SSH_PORT }}
+          envs: GIT_SHA,GITHUB_REF
           script_stop: true
           script: |
             echo "GIT_SHA - ${GIT_SHA}
