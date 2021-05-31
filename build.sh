@@ -24,13 +24,13 @@ docker build -t nowaidavid/xbackbone-docker-arm64:latest -t nowaidavid/xbackbone
 
 # Push Images
 docker image push nowaidavid/xbackbone-toolbox:latest
-docker iamge push nowaidavid/xbackbone-toolbox:"${GIT_SHA_VAR:-nosha}"
+docker image push nowaidavid/xbackbone-toolbox:"${GIT_SHA_VAR:-nosha}"
 
 docker image push nowaidavid/xbackbone-php:latest
 docker image push nowaidavid/xbackbone-php:"${GIT_SHA_VAR:-nosha}"
 
-docker image push nowaidavid/php-nginx:latest
-docker image push nowaidavid/php-nginx:"${GIT_SHA_VAR:-nosha}"
+docker image push nowaidavid/php-nginx:alpine-php7-arm64:latest
+docker image push nowaidavid/php-nginx:alpine-php7-arm64:"${GIT_SHA_VAR:-nosha}"
 
 docker image push nowaidavid/xbackbone-docker-arm64:latest
 docker image push nowaidavid/xbackbone-docker-arm64:"${GIT_SHA_VAR:-nosha}"
