@@ -11,18 +11,20 @@ jobs:
     name: Build Docker images via ARM instance.
     runs-on: ubuntu-latest
     steps:
-      - uses: tailscale/github-action@main
+      - name: Setup Tailscale for VPN to instance
+        uses: tailscale/github-action@main
         with:
           authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
-      - name: executing remote ssh commands using password
+      - name: Execute build script via SSH
         uses: appleboy/ssh-action@master
         env:
           GIT_SHA: ${{ github.sha }}
         with:
           host: ${{ secrets.XBACKBONE_HOST }}
           username: ${{ secrets.XBACKBONE_USERNAME }}
-          key: ${{ secrets.XBACKBONE_KEY }}
+          key: ${{ secrets.XBACKBONE_SSH_KEY }}
           port: 22
+          script_stop: true
           script: |
             cd /tmp
             rm -rf /tmp/XBackBone-docker-arm64
