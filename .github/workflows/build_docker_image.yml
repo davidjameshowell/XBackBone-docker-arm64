@@ -15,6 +15,7 @@ jobs:
         uses: appleboy/ssh-action@master
         env:
           GIT_SHA: ${{ github.sha }}
+          GITHUB_REF: ${{ github.ref }}
         with:
           host: ${{ secrets.XBACKBONE_HOST }}
           username: ${{ secrets.XBACKBONE_USERNAME }}
@@ -22,10 +23,12 @@ jobs:
           port: ${{ secrets.XBACKBONE_SSH_PORT }}
           script_stop: true
           script: |
+            echo "GIT_SHA - ${GIT_SHA}
+            echo "GITHUB_REF - ${GITHUB_REF}
             cd /tmp
             rm -rf /tmp/XBackBone-docker-arm64
             git clone https://github.com/davidjameshowell/XBackBone-docker-arm64
             cd XBackBone-docker-arm64
             git checkout ${GITHUB_REF}
-            bash build.sh
+            bash build.sh ${GIT_SHA}
             rm -rf /tmp/XBackBone-docker-arm64
