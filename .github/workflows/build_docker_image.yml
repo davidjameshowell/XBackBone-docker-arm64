@@ -11,12 +11,11 @@ jobs:
     name: Build Docker images via ARM instance.
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Tailscale for VPN to instance
-        uses: tailscale/github-action@main
+      - uses: tailscale/github-action@main
         with:
           authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
       - name: Check ping of host
-        run: ping -c 5 ${{ secrets.XBACKBONE_HOST }}
+        run: tailscale ip
       - name: Execute build script via SSH
         uses: appleboy/ssh-action@master
         env:
