@@ -11,12 +11,6 @@ jobs:
     name: Build Docker images via ARM instance.
     runs-on: ubuntu-latest
     steps:
-      - uses: tailscale/github-action@main
-        with:
-          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
-          version: "1.8.5"
-      - name: Check Tailscale connectivity
-        run: tailscale ip
       - name: Execute build script via SSH
         uses: appleboy/ssh-action@master
         env:
@@ -25,7 +19,7 @@ jobs:
           host: ${{ secrets.XBACKBONE_HOST }}
           username: ${{ secrets.XBACKBONE_USERNAME }}
           key: ${{ secrets.XBACKBONE_SSH_KEY }}
-          port: "22"
+          port: ${{ secrets.XBACKBONE_SSH_PORT }}
           script_stop: true
           script: |
             cd /tmp
