@@ -35,5 +35,4 @@ docker image push nowaidavid/php-nginx:"${GIT_SHA_VAR:-nosha}"
 docker image push nowaidavid/xbackbone-docker-arm64:latest
 docker image push nowaidavid/xbackbone-docker-arm64:"${GIT_SHA_VAR:-nosha}"
 
-
 printf "All images pushed to Dockerhub and now avaliable for consumption"
