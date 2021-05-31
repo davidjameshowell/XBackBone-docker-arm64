@@ -24,7 +24,7 @@ jobs:
           script_stop: true
           script: |
             echo "GIT_SHA - ${GIT_SHA}
-            echo "GITHUB_REF - ${GITHUB_REF}
+            echo "GITHUB_REF - ${GITHUB_REF#refs/heads/}
             cd /tmp
             rm -rf /tmp/XBackBone-docker-arm64
             git clone https://github.com/davidjameshowell/XBackBone-docker-arm64
