@@ -16,7 +16,7 @@ jobs:
         with:
           authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
       - name: Check ping of host
-        run: ping ${{ secrets.XBACKBONE_HOST }}
+        run: ping -c 5 ${{ secrets.XBACKBONE_HOST }}
       - name: Execute build script via SSH
         uses: appleboy/ssh-action@master
         env:
