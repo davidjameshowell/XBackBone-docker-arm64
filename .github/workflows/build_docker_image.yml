@@ -16,7 +16,7 @@ jobs:
           authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
           version: "1.8.5"
       - name: Check Tailscale connectivity
-        run: tailscale ip --4
+        run: tailscale ip
       - name: Check ping of host
         run: ping ${{ secrets.XBACKBONE_HOST }}
       - name: Execute build script via SSH
