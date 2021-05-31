@@ -1,22 +1,36 @@
 #!/bin/sh
 
-# travis trigger
+set -x
 
-docker kill xbackbone
-docker rm xbackbone
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
-docker build -t pe46dro/xbackbone-docker ./src/
+# Build Toolbox Image
+cd "${SCRIPT_DIR}"/upstream_images/toolbox || exit
+docker build -t nowaidavid/xbackbone-toolbox:latest -t nowaidavid/xbackbone-toolbox:"${GIT_SHA:-nosha}" .
 
-mkdir -p /srv/xbb/storage
-mkdir -p /srv/xbb/database
-mkdir -p /srv/xbb/logs
+# Build PHP image
+cd "${SCRIPT_DIR}"/upstream_images/php-official_7.4-alpine-arm64 || exit
+docker build -t nowaidavid/xbackbone-php:7.4-alpine-arm64 -t nowaidavid/xbackbone-php:7.4-alpine-arm64-"${GIT_SHA:-nosha}" .
 
-chown -R 1000:1000 /srv/xbb
+# Build PHP-NGINX iamge
+cd "${SCRIPT_DIR}"/upstream_images/php-nginx_alpine-php7-arm64 || exit
+docker build -t nowaidavid/php-nginx:alpine-php7-arm64 -t nowaidavid/php-nginx:alpine-php7-arm64-"${GIT_SHA:-nosha}" .
 
-docker run -p 80:80 \
-		-v /srv/xbb/storage:/app/storage \
-		-v /srv/xbb/database:/app/resources/database \
-		-v /srv/xbb/logs:/app/logs \
-		-e URL=http:\/\/127.0.0.1 \
-		--name xbackbone \
-		pe46dro/xbackbone-docker
+# Build XBackBone image
+cd "${SCRIPT_DIR}"/src || exit
+docker build -t nowaidavid/xbackbone-docker-arm64:latest -t nowaidavid/xbackbone-docker-arm64:"${GIT_SHA:-nosha}" .
+
+# Push Images
+docker push nowaidavid/xbackbone-toolbox:latest
+docker push nowaidavid/xbackbone-toolbox:"${GIT_SHA:-nosha}"
+
+docker push nowaidavid/xbackbone-php:7.4-alpine-arm64
+docker push nowaidavid/xbackbone-php:7.4-alpine-arm64-"${GIT_SHA:-nosha}"
+
+docker push nowaidavid/php-nginx:alpine-php7-arm64
+docker push nowaidavid/php-nginx:alpine-php7-arm64-"${GIT_SHA:-nosha}"
+
+docker push nowaidavid/xbackbone-docker-arm64:latest
+docker push nowaidavid/xbackbone-docker-arm64:"${GIT_SHA:-nosha}"
+
+printf "All images pushed to Dockerhub and now avaliable for consumption"
