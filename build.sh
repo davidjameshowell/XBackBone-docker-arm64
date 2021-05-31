@@ -4,8 +4,6 @@ set -x
 
 GIT_SHA_VAR=${1}
 
-echo "GITHUB SHA - ${GIT_SHA_VAR}"
-
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 # Build Toolbox Image

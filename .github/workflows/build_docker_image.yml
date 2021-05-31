@@ -25,12 +25,10 @@ jobs:
           script_stop: true
           command_timeout: 180m
           script: |
-            echo "GIT_SHA - ${GIT_SHA}
-            echo "GITHUB_REF - ${GITHUB_REF#refs/heads/}
             cd /tmp
             rm -rf /tmp/XBackBone-docker-arm64
             git clone https://github.com/davidjameshowell/XBackBone-docker-arm64
             cd XBackBone-docker-arm64
-            git checkout ${GITHUB_REF}
+            git checkout ${GITHUB_REF#refs/heads/}
             bash build.sh ${GIT_SHA}
             rm -rf /tmp/XBackBone-docker-arm64
