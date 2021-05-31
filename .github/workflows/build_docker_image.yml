@@ -1,4 +1,4 @@
-name: MultiArchDockerBuild
+name: DockerBuildImages
 
 on:
   push:
@@ -11,11 +11,10 @@ jobs:
     name: Build Docker images via ARM instance.
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Tailscale for VPN to instance
+      - name: Setup Tailscale and execute build script via SSH
         uses: tailscale/github-action@main
         with:
           authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
-      - name: Execute build script via SSH
         uses: appleboy/ssh-action@master
         env:
           GIT_SHA: ${{ github.sha }}
