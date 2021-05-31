@@ -16,7 +16,7 @@ docker build -t nowaidavid/xbackbone-php:7.4-alpine-arm64 -t nowaidavid/xbackbon
 
 # Build PHP-NGINX iamge
 cd "${SCRIPT_DIR}"/upstream_images/php-nginx_alpine-php7-arm64 || exit
-docker build -t nowaidavid/php-nginx:alpine-php7-arm64 -t nowaidavid/php-nginx:alpine-php7-arm64-"${GIT_SHA_VAR:-nosha}" .
+docker build -t nowaidavid/xbackbone-php-nginx:alpine-php7-arm64 -t nowaidavid/xbackbone-php-nginx:alpine-php7-arm64-"${GIT_SHA_VAR:-nosha}" .
 
 # Build XBackBone image
 cd "${SCRIPT_DIR}"/src || exit
@@ -26,11 +26,11 @@ docker build -t nowaidavid/xbackbone-docker-arm64:latest -t nowaidavid/xbackbone
 docker image push nowaidavid/xbackbone-toolbox:latest
 docker image push nowaidavid/xbackbone-toolbox:"${GIT_SHA_VAR:-nosha}"
 
-docker image push nowaidavid/xbackbone-php:latest
-docker image push nowaidavid/xbackbone-php:"${GIT_SHA_VAR:-nosha}"
+docker image push nowaidavid/xbackbone-php:7.4-alpine-arm64
+docker image push nowaidavid/xbackbone-php:7.4-alpine-arm64-"${GIT_SHA_VAR:-nosha}"
 
-docker image push nowaidavid/php-nginx:alpine-php7-arm64:latest
-docker image push nowaidavid/php-nginx:alpine-php7-arm64:"${GIT_SHA_VAR:-nosha}"
+docker image push nowaidavid/xbackbone-php-nginx:alpine-php7-arm64
+docker image push nowaidavid/xbackbone-php-nginx:alpine-php7-arm64-"${GIT_SHA_VAR:-nosha}"
 
 docker image push nowaidavid/xbackbone-docker-arm64:latest
 docker image push nowaidavid/xbackbone-docker-arm64:"${GIT_SHA_VAR:-nosha}"
