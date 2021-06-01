@@ -1,31 +1,8 @@
+# XBackBone Docker on ARM64
 
-# About this Repo
+This was built in order to use XBackBone with Oracle Free Tier's ARM64 instances. Unfortunately, the original upstream images are all AMD64 based. I have gone thrlough and updated references to software to latest versions where applicable, change references, as well as saved copies of binaries as is from the source in the event references no longer exist.
 
-This is the Docker image for [XBackBone](https://github.com/SergiX44/XBackBone) ~ based on [webdevops/php-nginx](https://dockerfile.readthedocs.io/en/latest/content/DockerImages/dockerfiles/php-nginx.html).
-
-# Supported tags and respective `Dockerfile`
--	[`latest` (**THIS REPO**/src/Dockerfile)]
--	[`3.3`,`3.3.3` (*src/Dockerfile*)]
--	[`3.2`,`3.2.0` (*src/Dockerfile*)]
--	[`3.1`,`3.1.4` (*src/Dockerfile*)]
--	[`3.0`,`3.0.2`, (*src/Dockerfile*)]
--	[`2.6`,`2.6.5` (*src/Dockerfile*)]
--	[`2.6.3` (*src/Dockerfile*)]
--	[`2.6.0` (*src/Dockerfile*)]
--	[`2.5`,`2.5.3` (*src/Dockerfile*)]
--	[`2.5.0` (*src/Dockerfile*)]
--	[`2.4`, `2.4.1`, (*src/Dockerfile*)]
--	[`dev` (*dev/src/Dockerfile*)](https://github.com/Pe46dro/XBackBone-docker/tree/dev)
-
-# Quick reference
-
--	**Where to file issues**:  
-	[https://github.com/Pe46dro/XBackBone-docker/issues](https://github.com/Pe46dro/XBackBone-docker/issues)
-
--	**Supported architectures**: `amd64`
-
--	**Supported Docker versions**:  
-	[the latest release](https://github.com/docker/docker-ce/releases/latest) (down to 1.6 on a best-effort basis)
+All images are built directly against an ARM instance, as buildx and QEMU have an issue with some Go binaries in Actions. These images work as drop in replacements from [Pe46dro's built image](https://github.com/Pe46dro/XBackBone-docker).
 
 # How to use this image
 
@@ -36,7 +13,7 @@ $ docker run -p 80:80 \
     -e APP_NAME=XBackBone \
     -e URL=http:\/\/127.0.0.1 \
     --name xbb \
-    pe46dro/xbackbone-docker
+    nowaidavid/xbackbone-docker-arm64:latest
 ```
 
 ## Container shell access
@@ -105,48 +82,3 @@ Refer to [webdevops documentation](https://dockerfile.readthedocs.io/en/latest/c
 | ``FPM_REQUEST_TERMINATE_TIMEOUT`` 		| ``request_terminate_timeout``                	| ``distribution default`` 	|
 | ``FPM_RLIMIT_FILES``              		| ``rlimit_files``                             	| ``distribution default`` 	|
 | ``FPM_RLIMIT_CORE``               		| ``rlimit_core``                           	| ``distribution default`` 	|
-
-
-
-#### Example
-```bash 
-mkdir -p /srv/xbb/storage
-mkdir -p /srv/xbb/database
-mkdir -p /srv/xbb/logs
-mkdir -p /srv/xbb/config
-
-chown -R 1000:1000 /srv/xbb
-```
-
-# MySQL Database
-
- - Clone repo
- - Customize ENV flags in xbb.env
- - Build and run
-
-```bash
-git clone https://github.com/Pe46dro/XBackBone-docker.git .
-docker-compose up -d
-```
-
-# LDAP Authentication
-The following environment variables are available to configure LDAP authentication:
-- ``LDAP_ENABLED``
-- ``LDAP_HOST``
-- ``LDAP_PORT``
-- ``LDAP_BASE_DOMAIN``
-- ``LDAP_USER_DOMAIN``
-- ``LDAP_RDN_ATTRIBUTE``
-
-See the [docs](https://xbackbone.app/configuration.html#ldap-authentication) for explanation.
-
-# Upgrade from version < 3.1.4
-Run the following command before performing the upgrade:
-`echo '-' > YOUR_STORAGE_VOLUME/storage/.installed`
-
-# Mantainer
- * [Pe46dro](https://github.com/Pe46dro) - Creator
-
-# License
-
-View [license information](LICENSE) for the software contained in this image.
