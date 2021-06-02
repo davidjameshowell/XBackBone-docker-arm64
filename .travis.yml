@@ -40,7 +40,6 @@ jobs:
       script:
         # Build image
         - docker build --no-cache -f ./upstream_images/php-nginx_alpine-php7-arm64/Dockerfile -t ${DOCKERHUB_XBACKBONE_PHP_NGINX} -t ${DOCKERHUB_XBACKBONE_PHP_NGINX}-${TRAVIS_COMMIT} ./upstream_images/php-nginx_alpine-php7-arm64
-        - docker tag ${DOCKERHUB_XBACKBONE_PHP_NGINX}:${TRAVIS_COMMIT} ${DOCKERHUB_XBACKBONE_PHP_NGINX}
         # Login to DockerHub
         - echo $DOCKERPASS | docker login -u $DOCKERUSER --password-stdin
         # Push all of the tags
