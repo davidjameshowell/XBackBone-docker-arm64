@@ -19,7 +19,7 @@ jobs:
       if: (NOT (type IN (pull_request)))
       script:
         # Build image
-        - docker build --no-cache -f ./upstream_images/toolbox/Dockerfile -t ${DOCKERHUB_TOOLBOX}:latest -t ${DOCKERHUB_TOOLBOX}:${TRAVIS_COMMIT} .
+        - docker build --no-cache -f ./upstream_images/toolbox/Dockerfile -t ${DOCKERHUB_TOOLBOX}:latest -t ${DOCKERHUB_TOOLBOX}:${TRAVIS_COMMIT} ./upstream_images/toolbox
         # Login to DockerHub
         - echo $DOCKERPASS | docker login -u $DOCKERUSER --password-stdin
         # Push all of the tags
@@ -29,7 +29,7 @@ jobs:
       if: (NOT (type IN (pull_request)))
       script:
         # Build image
-        - docker build --no-cache -f ./upstream_images/php-official_7.4-alpine-arm64/Dockerfile -t ${DOCKERHUB_XBACKBONE_PHP} -t ${DOCKERHUB_XBACKBONE_PHP}-${TRAVIS_COMMIT} .
+        - docker build --no-cache -f ./upstream_images/php-official_7.4-alpine-arm64/Dockerfile -t ${DOCKERHUB_XBACKBONE_PHP} -t ${DOCKERHUB_XBACKBONE_PHP}-${TRAVIS_COMMIT} ./upstream_images/php-official_7.4-alpine-arm64
         # Login to DockerHub
         - echo $DOCKERPASS | docker login -u $DOCKERUSER --password-stdin
         # Push all of the tags
@@ -39,7 +39,7 @@ jobs:
       if: (NOT (type IN (pull_request)))
       script:
         # Build image
-        - docker build --no-cache -f ./upstream_images/php-nginx_alpine-php7-arm64/Dockerfile -t ${DOCKERHUB_XBACKBONE_PHP_NGINX} -t ${DOCKERHUB_XBACKBONE_PHP_NGINX}-${TRAVIS_COMMIT} .
+        - docker build --no-cache -f ./upstream_images/php-nginx_alpine-php7-arm64/Dockerfile -t ${DOCKERHUB_XBACKBONE_PHP_NGINX} -t ${DOCKERHUB_XBACKBONE_PHP_NGINX}-${TRAVIS_COMMIT} ./upstream_images/php-nginx_alpine-php7-arm64
         - docker tag ${DOCKERHUB_XBACKBONE_PHP_NGINX}:${TRAVIS_COMMIT} ${DOCKERHUB_XBACKBONE_PHP_NGINX}
         # Login to DockerHub
         - echo $DOCKERPASS | docker login -u $DOCKERUSER --password-stdin
@@ -50,7 +50,7 @@ jobs:
       if: (NOT (type IN (pull_request)))
       script:
         # Build image
-        - docker build --no-cache -f ./src/Dockerfile -t ${DOCKERHUB_XBACKBONE_IMAGE}:${TRAVIS_COMMIT} -t ${DOCKERHUB_XBACKBONE_IMAGE}-latest .
+        - docker build --no-cache -f ./src/Dockerfile -t ${DOCKERHUB_XBACKBONE_IMAGE}:${TRAVIS_COMMIT} -t ${DOCKERHUB_XBACKBONE_IMAGE}-latest ./src
         # Login to DockerHub
         - echo $DOCKERPASS | docker login -u $DOCKERUSER --password-stdin
         # Push all of the tags
