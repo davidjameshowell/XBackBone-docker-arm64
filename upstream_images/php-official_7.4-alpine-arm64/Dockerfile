@@ -48,7 +48,7 @@ ENV COMPOSER_VERSION="2"
 COPY --from=baselayout /baselayout /
 
 
-COPY conf/ /opt/docker/
+COPY ./conf/ /opt/docker/
 
 RUN set -x \
     # Init bootstrap

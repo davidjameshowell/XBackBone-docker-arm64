@@ -1,6 +1,5 @@
 arch:
   - arm64
-dist: xenial
 os: linux
 language: shell
 
