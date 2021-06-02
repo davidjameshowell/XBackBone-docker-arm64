@@ -49,7 +49,7 @@ jobs:
       if: (NOT (type IN (pull_request)))
       script:
         # Build image
-        - docker build --no-cache -f ./src/Dockerfile -t ${DOCKERHUB_XBACKBONE_IMAGE}:${TRAVIS_COMMIT} -t ${DOCKERHUB_XBACKBONE_IMAGE}-latest ./src
+        - docker build --no-cache -f ./src/Dockerfile -t ${DOCKERHUB_XBACKBONE_IMAGE}:${TRAVIS_COMMIT} -t ${DOCKERHUB_XBACKBONE_IMAGE}:latest ./src
         # Login to DockerHub
         - echo $DOCKERPASS | docker login -u $DOCKERUSER --password-stdin
         # Push all of the tags
