@@ -1,7 +1,6 @@
 FROM nowaidavid/xbackbone-php-nginx:alpine-php7-arm64
-MAINTAINER David Howell <david@davidjameshowell.com>
 
-ARG XBACKBONE_VERSION=3.3.5
+ARG XBACKBONE_VERSION=3.5.1
 ENV APP_NAME=XBackBone
 ENV URL=http:\/\/127.0.0.1
 
