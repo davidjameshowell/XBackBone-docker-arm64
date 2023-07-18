@@ -7,12 +7,12 @@ RUN mkdir -p \
     && wget -O /tmp/baselayout-install.sh https://raw.githubusercontent.com/webdevops/Docker-Image-Baselayout/master/install.sh \
     && sh /tmp/baselayout-install.sh /baselayout \
     ## Install go-replace
-    && wget -O "/baselayout/usr/local/bin/go-replace" "https://github.com/webdevops/goreplace/releases/download/1.1.2/gr-arm64-linux" \
+    && wget -O "/baselayout/usr/local/bin/go-replace" "https://github.com/webdevops/goreplace/releases/download/22.10.0/go-replace.linux.arm64" \
     && chmod +x "/baselayout/usr/local/bin/go-replace" \
     && "/baselayout/usr/local/bin/go-replace" --version \
     # Install gosu
-    && wget -O "/baselayout/sbin/gosu" "https://github.com/tianon/gosu/releases/download/1.12/gosu-arm64" \
-    && wget -O "/tmp/gosu.asc" "https://github.com/tianon/gosu/releases/download/1.12/gosu-arm64.asc" \
+    && wget -O "/baselayout/sbin/gosu" "https://github.com/tianon/gosu/releases/download/1.16/gosu-arm64" \
+    && wget -O "/tmp/gosu.asc" "https://github.com/tianon/gosu/releases/download/1.16/gosu-arm64.asc" \
     && export GNUPGHOME="$(mktemp -d)" \
     && gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
     && gpg --batch --verify /tmp/gosu.asc "/baselayout/sbin/gosu" \
@@ -21,7 +21,7 @@ RUN mkdir -p \
     && "/baselayout/sbin/gosu" nobody true
 
 
-FROM php:7.4-fpm-alpine
+FROM 8.2-fpm-alpine3.18
 
 LABEL maintainer=david@davidjameshowell.com \
       vendor=DJHProjects \
@@ -53,7 +53,7 @@ COPY ./conf/ /opt/docker/
 RUN set -x \
     # Init bootstrap
     # Add community
-    && echo https://dl-4.alpinelinux.org/alpine/v3.11/community/ >> /etc/apk/repositories \
+    && echo https://dl-4.alpinelinux.org/alpine/v3.18/community/ >> /etc/apk/repositories \
     # System update
     && /usr/local/bin/apk-upgrade \
     # Install base stuff

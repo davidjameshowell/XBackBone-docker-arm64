@@ -1,4 +1,4 @@
-FROM nowaidavid/xbackbone-php:7.4-alpine-arm64
+FROM nowaidavid/xbackbone-php:8.2-alpine-arm64
 
 ENV WEB_DOCUMENT_ROOT=/app \
     WEB_DOCUMENT_INDEX=index.php \
