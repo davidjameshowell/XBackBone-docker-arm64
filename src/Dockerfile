@@ -1,6 +1,6 @@
 FROM nowaidavid/xbackbone-php-nginx:alpine-php7-arm64
 
-ARG XBACKBONE_VERSION=3.6.3
+ARG XBACKBONE_VERSION=3.7.0
 ENV APP_NAME=XBackBone
 ENV URL=http:\/\/127.0.0.1
 
